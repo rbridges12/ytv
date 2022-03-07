@@ -23,3 +23,21 @@ Instead, we can write a script to render each character as an image, then we can
 # Downloading Videos
   - `youtube-dl` to download videos
   - openCV to split videos into frame images
+
+# Video to Ascii Pipeline
+### Option 1
+- run a separate python program that uses openCV to split the video into frames and save each individual frame with the frame number in the file name
+- have the ascii converter sort through all the file names in order of their frame number and convert them to ascii art one by one
+
+### Option 2
+- use openCV to save one frame at a time, then convert it to ascii, then delete it
+
+### Option 3
+- figure out how to get a raw pixel array straight from openCV and do the ascii conversion straight from the openCV frame without having to save anything
+
+# TODO
+- separate conversion functions into their own file
+- switch from PIL to openCV frames and numpy
+- detect framerate and use that to playback at the correct speed
+- implement colored dumb conversion
+- find optimal character brightness order

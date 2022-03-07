@@ -22,7 +22,7 @@ def dumb_convert(term_size, img_path):
     pixels = img.getdata()
     chars = []
     for p in pixels:
-        index = round((p / 256) * len(char_pixels)) - 1
+        index = round((p / 256) * (len(char_pixels) - 1))
         #print(index)
         chars.append(char_pixels[index])
     
@@ -56,4 +56,4 @@ for filename in sorted(listdir("frames"), key=lambda x: int(x.replace(".jpg", ""
 
 for frame in ascii_frames:
     print(frame)
-    sleep(0.2)
+    sleep(0.05)

@@ -1,7 +1,9 @@
 from PIL import Image 
 from sys import argv
+from shutil import get_terminal_size
 
-ascii_pixels = ".',/>aABH@#"
+char_pixels = ".',/>aABH@#"
+#char_pixels = ".,'\":-=+*#%@"
 
 def dumb_convert(term_size, img_path):
     try:
@@ -13,10 +15,16 @@ def dumb_convert(term_size, img_path):
     out_size = calculate_dims(term_size, img.size, preserve_scale=False) 
     img = img.resize(out_size)
     img = img.convert("L")
-    img.show()
+#    img.show()
  
     pixels = img.getdata()
+    chars = []
+    for p in pixels:
+        index = round((p / 256) * len(char_pixels)) - 1
+        print(index)
+        chars.append(char_pixels[index])
     
+    print_char_img(chars, term_size) 
 
 def calculate_dims(term_size, img_size, preserve_scale):
     if preserve_scale:
@@ -25,4 +33,13 @@ def calculate_dims(term_size, img_size, preserve_scale):
     else:
         return term_size  
 
-dumb_convert((300, 200), argv[1])
+def print_char_img(chars, term_size):
+    output = []
+    width, height = term_size
+    for i, c in enumerate(chars):
+       output.append(c)
+       if i % width == 0:
+          output.append("\n") 
+    print("".join(output))
+
+dumb_convert(tuple(get_terminal_size()), argv[1])

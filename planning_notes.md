@@ -37,7 +37,8 @@ Instead, we can write a script to render each character as an image, then we can
 
 # TODO
 - separate conversion functions into their own file
-- switch from PIL to openCV frames and numpy
 - detect framerate and use that to playback at the correct speed
 - implement colored dumb conversion
 - find optimal character brightness order
+- look into video streaming instead of just downloading
+- interface for downloading from other sources

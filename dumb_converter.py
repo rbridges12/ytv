@@ -1,4 +1,6 @@
 from PIL import Image 
+import cv2
+import numpy as np
 from sys import argv
 from shutil import get_terminal_size
 from os import listdir
@@ -6,6 +8,21 @@ from time import sleep
 
 char_pixels = ".',/>aABH@#"
 #char_pixels = ".,'\":-=+*#%@"
+
+def dumb_convert_np(term_size, frame):
+    frame = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)
+    frame = cv2.resize(frame, term_size)
+    
+    ascii_range = len(char_pixels) - 1
+    char_ids = np.rint((frame / 256) * ascii_range)
+    chars = []
+    
+    for row in char_ids:
+        for i in row:
+            chars.append(char_pixels[int(i)])
+        chars.append("\n") 
+    
+    return "".join(chars)
 
 def dumb_convert(term_size, img_path):
     try:
@@ -46,13 +63,29 @@ def print_char_img(chars, term_size):
     return "".join(output)
 
 #dumb_convert(tuple(get_terminal_size()), argv[1])
-#img_filenames = [(int(f.replace(".jpg", "")), f) for f in listdir("frames")]
+'''
 ascii_frames = []
 term_size = tuple(get_terminal_size())
 for filename in sorted(listdir("frames"), key=lambda x: int(x.replace(".jpg", ""))):
     #print(filename)
     frame = dumb_convert(term_size, f"frames/{filename}")
     ascii_frames.append(frame)
+
+for frame in ascii_frames:
+    print(frame)
+    sleep(0.05)
+'''
+
+video = cv2.VideoCapture(argv[1])
+term_size = tuple(get_terminal_size())
+ascii_frames = []
+
+while True:
+    success, frame = video.read()
+    if not success:
+        break
+
+    ascii_frames.append(dumb_convert_np(term_size, frame))
 
 for frame in ascii_frames:
     print(frame)

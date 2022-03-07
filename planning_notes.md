@@ -18,3 +18,8 @@
 We could do this manually for ascii characters, but it might be a little unclear just looking at different characters by eye and ranking them. If we want to expand to unicode characters, this would become pretty infeasible to do by hand.
 
 Instead, we can write a script to render each character as an image, then we can rank those images in order of average brightness (maybe just take the sum of all rgb values in each image).
+
+
+# Downloading Videos
+  - `youtube-dl` to download videos
+  - openCV to split videos into frame images

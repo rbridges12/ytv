@@ -5,7 +5,7 @@
 Clone or download the repository, `cd` into it, then run:
 `sudo chmod +x ytv`
 
-# Usage
+## Usage
 `./ytv [URL]`
 
 You can watch videos from any site supported by youtube-dl, [listed here](https://ytdl-org.github.io/youtube-dl/supportedsites.html).

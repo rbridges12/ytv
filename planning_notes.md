@@ -42,3 +42,5 @@ Instead, we can write a script to render each character as an image, then we can
 - find optimal character brightness order
 - look into video streaming instead of just downloading
 - interface for downloading from other sources
+- allow for some of the sleep time between frames to be taken up by processing time in order to maintain framerate across different terminal dimensions
+- incorporate bold text

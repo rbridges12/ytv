@@ -2,7 +2,7 @@ import cv2
 import numpy as np
 from sys import argv
 from shutil import get_terminal_size
-from time import sleep
+from time import time, sleep
 
 
 # render image in grayscale ascii based only on character brightness
@@ -42,6 +42,7 @@ def main():
     char_pixels = " .',/>aABH@#"
     char_pixels_all = " `.\'_-,:\"^;~+*><!/|)i?rcl]}jLJCY%1tvzxnufoahqpdbwkmZIX&8UO$@Q0W#MB"
     char_pixels10 = " .:-=+*#%@"
+    frame_delay = 0.05
     ascii_frames = []
 
     while True:
@@ -49,8 +50,11 @@ def main():
         if not success:
             break
 
+        # see how long it takes to render the frame, then sleep for the remainder of the frame delay
+        start_time = time()
         print(dumb_convert(term_size, frame, char_pixels, preserve_scale=False))
-        sleep(0.05)
+        render_time = time() - start_time
+        sleep(max(0, frame_delay - render_time))
 
 '''
     for frame in ascii_frames:

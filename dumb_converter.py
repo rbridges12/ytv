@@ -38,11 +38,13 @@ def calculate_dims(term_size, img_size, preserve_scale):
 
 def main():
     video = cv2.VideoCapture(argv[1])
+    framerate = video.get(cv2.CAP_PROP_FPS)
+    frame_delay = 1 / framerate
+
     term_size = tuple(get_terminal_size())
     char_pixels = " .',/>aABH@#"
     char_pixels_all = " `.\'_-,:\"^;~+*><!/|)i?rcl]}jLJCY%1tvzxnufoahqpdbwkmZIX&8UO$@Q0W#MB"
     char_pixels10 = " .:-=+*#%@"
-    frame_delay = 0.05
     ascii_frames = []
 
     while True:

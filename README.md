@@ -2,8 +2,7 @@
 **ytv**, aka youtube terminal viewer, is a command line application that lets you watch youtube (and other) videos right from the comfort of your own terminal. It uses youtube-dl to download your desired video, then renders it in ASCII text for your viewing pleasure.
 
 ## Installation
-Clone or download the repository, `cd` into it, then run:
-`sudo chmod +x ytv`
+Install `youtube-dl` by following the instructions [here](https://github.com/ytdl-org/youtube-dl#readme), then just clone or download this repository.
 
 ## Usage
 `./ytv [URL]`

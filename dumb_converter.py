@@ -49,7 +49,6 @@ def main():
         if not success:
             break
 
-        #ascii_frames.append(dumb_convert(term_size, frame, char_pixels, preserve_scale=False))
         print(dumb_convert(term_size, frame, char_pixels, preserve_scale=False))
         sleep(0.05)
 

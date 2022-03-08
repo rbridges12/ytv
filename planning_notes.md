@@ -44,3 +44,8 @@ Instead, we can write a script to render each character as an image, then we can
 - interface for downloading from other sources
 - allow for some of the sleep time between frames to be taken up by processing time in order to maintain framerate across different terminal dimensions
 - incorporate bold text
+- add option in executable script to play already downloaded video
+
+# Links
+- [youtube-dl docs](https://github.com/ytdl-org/youtube-dl/blob/master/README.md#readme)
+- [tiktok-scraper](https://github.com/drawrowfly/tiktok-scraper)

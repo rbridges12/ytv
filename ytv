@@ -1,0 +1,6 @@
+#!/bin/bash
+
+youtube-dl -o temp_video_download.mp4 $1
+python3 dumb_converter.py temp_video_download.mp4
+rm temp_video_download.mp4
+

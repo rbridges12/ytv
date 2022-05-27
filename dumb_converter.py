@@ -6,7 +6,7 @@ from time import time, sleep
 
 
 # render image in grayscale ascii based only on character brightness
-def dumb_convert(term_size, frame, char_pixels, preserve_scale=False):
+def dumb_convert(term_size, frame, ascii_brightness_map, preserve_scale=False):
     
     # convert image to grayscale and scale it to the terminal size  
     frame = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)
@@ -14,9 +14,9 @@ def dumb_convert(term_size, frame, char_pixels, preserve_scale=False):
     frame = cv2.resize(frame, out_dims)
     
     # map grayscale brightness to ascii characters
-    ascii_range = len(char_pixels) - 1
+    ascii_range = len(ascii_brightness_map) - 1
     char_ids = np.rint((frame / 256) * ascii_range).astype(int)
-    char_array = np.array(list(char_pixels))
+    char_array = np.array(list(ascii_brightness_map))
     chars = char_array[char_ids]
     
     # combine 2D char array into a single string with newlines after each row
@@ -45,7 +45,6 @@ def main():
     char_pixels = " .',/>aABH@#"
     char_pixels_all = " `.\'_-,:\"^;~+*><!/|)i?rcl]}jLJCY%1tvzxnufoahqpdbwkmZIX&8UO$@Q0W#MB"
     char_pixels10 = " .:-=+*#%@"
-    ascii_frames = []
 
     while True:
         success, frame = video.read()
@@ -58,10 +57,6 @@ def main():
         render_time = time() - start_time
         sleep(max(0, frame_delay - render_time))
 
-'''
-    for frame in ascii_frames:
-        print(frame)
-'''
 
 if __name__ == "__main__":
     main()
